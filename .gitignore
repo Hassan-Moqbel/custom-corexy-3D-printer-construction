@@ -1,0 +1,27 @@
+# Arduino Build Artifacts
+build/
+*.hex
+*.elf
+*.bin
+*.eep
+*.map
+*.o
+*.d
+*.ino.elf
+*.ino.bin
+*.ino.map
+
+# VS Code / PlatformIO
+.vscode/
+.pio/
+.pioenvs/
+.piolibdeps/
+*.code-workspace
+
+# OS / Editor Files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+*.swp
