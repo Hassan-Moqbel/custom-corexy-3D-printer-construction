@@ -55,7 +55,7 @@ $$ S = \frac{200 \times 16}{2 \times 20} = 80 \text{ steps/mm} $$
 ### Driver Current Tuning
 To prevent missed steps without exceeding motor thermal limits, the stepper driver reference voltage ($V_{ref}$) is tuned:
 $$ V_{ref} = 8 \times I_{max} \times R_s $$
-Where $I_{max}$ is the target motor phase current and $R_s$ is the sense resistor value (typically $0.1\Omega$).
+Where $I_{max}$is the target motor phase current and$R_s$is the sense resistor value (typically$0.1\Omega$).
 
 ## Hardware Bill of Materials (BOM)
 | Component | Specification | Quantity |
