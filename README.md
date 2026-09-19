@@ -21,41 +21,41 @@ Additive manufacturing represents a transformative methodology in mechanical eng
 
 ## System Architecture
 
-```mermaid
+mermaid
 flowchart TD
-    PSU[12V 30A 360W SMPS] -->|11A Rail| R11[RAMPS 1.4 Bed Input]
-    PSU -->|5A Rail| R5[RAMPS 1.4 Logic Input]
-    R5 -->|5V Step-Down| MEGA[Arduino Mega 2560]
+    PSU["12V 30A 360W SMPS"] -->|11A Rail| R11["RAMPS 1.4 Bed Input"]
+    PSU -->|5A Rail| R5["RAMPS 1.4 Logic Input"]
+    R5 -->|5V Step-Down| MEGA["Arduino Mega 2560"]
     
-    MEGA <-->|GPIO| RAMPS[RAMPS 1.4 Shield Base]
+    MEGA <-->|GPIO| RAMPS["RAMPS 1.4 Shield Base"]
     
-    R11 -->|MOSFET| BED[Heated Bed]
-    R5 -->|MOSFET| HOTEND[Extruder Hotend]
+    R11 -->|MOSFET| BED["Heated Bed"]
+    R5 -->|MOSFET| HOTEND["Extruder Hotend"]
     
-    RAMPS -->|A4988 Drivers| MOTORS[NEMA 17 Steppers X,Y,Z,E]
-    RAMPS -->|Analog In| THERM[100k NTC Thermistors]
-    RAMPS -->|Digital In| END[Mechanical Endstops]
+    RAMPS -->|A4988 Drivers| MOTORS["NEMA 17 Steppers X,Y,Z,E"]
+    RAMPS -->|Analog In| THERM["100k NTC Thermistors"]
+    RAMPS -->|Digital In| END["Mechanical Endstops"]
     
-    RAMPS <-->|EXP1 & EXP2| LCD[20x4 LCD Smart Controller]
-```
+    RAMPS <-->|EXP1 & EXP2| LCD["20x4 LCD Smart Controller"]
+
 
 ## Theoretical & Mathematical Models
 
 ### Kinematic Resolution (Steps per mm)
 To ensure dimensional accuracy, the firmware must accurately map stepper motor pulses to physical linear movement.
 For a belt-driven axis (X and Y), the steps per millimeter ($S$) is calculated as:
-$$ S = \frac{SPR \times MS}{P \times T} $$
+$$ S = \frac{"SPR \times MS"}{P \times T} $$
 Where:
 - $SPR$ = Stepper steps per revolution (Typically 200 for a 1.8° motor).
 - $MS$ = Microstepping factor set via jumpers (e.g., 16 for A4988).
 - $P$ = Belt pitch in mm (e.g., 2mm for GT2 belts).
 - $T$ = Pulley tooth count (e.g., 20 teeth).
-$$ S = \frac{200 \times 16}{2 \times 20} = 80 \text{ steps/mm} $$
+$$ S = \frac{"200 \times 16"}{2 \times 20} = 80 \text{" steps/mm"} $$
 
 ### Driver Current Tuning
-To prevent missed steps without exceeding motor thermal limits, the stepper driver reference voltage ($V_{ref}$) is tuned:
-$$ V_{ref} = 8 \times I_{max} \times R_s $$
-Where $I_{max}$ is the target motor phase current and $R_s$ is the sense resistor value (typically $0.1\Omega$).
+To prevent missed steps without exceeding motor thermal limits, the stepper driver reference voltage ($V_{"ref"}$) is tuned:
+$$ V_{"ref"} = 8 \times I_{"max"} \times R_s $$
+Where $I_{"max"}$ is the target motor phase current and $R_s$ is the sense resistor value (typically $0.1\Omega$).
 
 ## Hardware Bill of Materials (BOM)
 | Component | Specification | Quantity |
@@ -85,15 +85,15 @@ Where $I_{max}$ is the target motor phase current and $R_s$ is the sense resisto
 ## Repository Layout Tree
 ```text
 .
-├── docs/                  # Academic 3D printer report and specifications [VERIFIED]
-│   └── images/            # Original photography of the physical build [ORIGINAL]
-├── firmware/              # Baseline Marlin configuration file [RECONSTRUCTED]
-├── hardware/              # Power distribution specifications and driver math [RECONSTRUCTED]
+├── docs/                  # Academic 3D printer report and specifications ["VERIFIED"]
+│   └── images/            # Original photography of the physical build ["ORIGINAL"]
+├── firmware/              # Baseline Marlin configuration file ["RECONSTRUCTED"]
+├── hardware/              # Power distribution specifications and driver math ["RECONSTRUCTED"]
 └── _archive/              # Draft iterations and redundant documents
 ```
 
 ## Step-by-Step Firmware Setup & Prerequisites
-1. Download the [Arduino IDE](https://www.arduino.cc/en/software) and [Marlin Firmware 1.1.x / 2.0.x source](https://marlinfw.org/).
+1. Download the ["Arduino IDE"](https://www.arduino.cc/en/software) and ["Marlin Firmware 1.1.x / 2.0.x source"](https://marlinfw.org/).
 2. Copy `firmware/Configuration_RAMPS14_baseline.h` and rename it to `Configuration.h`, replacing the default file in the Marlin source directory.
 3. Open `Marlin.ino` in the Arduino IDE.
 4. Select **Arduino Mega 2560** as the target board under the `Tools` menu.
@@ -106,7 +106,7 @@ Where $I_{max}$ is the target motor phase current and $R_s$ is the sense resisto
 
 ## Engineering Audit & Defensibility Limitations
 - **Missing Original Firmware Assets**: The specific PID values and dimensional steps/mm tuned for this exact physical printer were not historically preserved. The provided `Configuration_RAMPS14_baseline.h` serves as a **[RECONSTRUCTED]** architectural baseline representative of the machine described in the academic report.
-- **Structural Rigidity Tradeoffs**: Open-source threaded rod or acrylic frame designs (e.g., standard Prusa i3 clones) often suffer from Z-wobble and resonant vibrations at higher print speeds ($>60\text{ mm/s}$). Upgrading to an aluminum extrusion (2020 profile) chassis significantly mitigates these artifacts.
+- **Structural Rigidity Tradeoffs**: Open-source threaded rod or acrylic frame designs (e.g., standard Prusa i3 clones) often suffer from Z-wobble and resonant vibrations at higher print speeds ($>60\text{" mm/s"}$). Upgrading to an aluminum extrusion (2020 profile) chassis significantly mitigates these artifacts.
 
 ---
 
@@ -115,4 +115,4 @@ Mechatronics Engineer | Mechanical Design & CAD (SolidWorks & AutoCAD) | Prevent
 [GitHub](https://github.com/Hassan-Moqbel) · [Facebook](https://www.facebook.com/share/1BqxAgVjHi/) · [LinkedIn](https://www.linkedin.com/in/hassan-moqbel)
 
 ## License
-This project is licensed under the [GPL-3.0 License](LICENSE).
+This project is licensed under the ["GPL-3.0 License"](LICENSE).
