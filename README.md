@@ -52,7 +52,7 @@ $$
 Where:
 - $\text{SPR}$: Stepper steps per revolution (typically 200 for a 1.8° step angle motor).
 - $\text{MS}$: Microstepping factor set via stepper driver jumpers (e.g., 16 for A4988 / 1/16 microstepping).
-- $P $: Belt pitch in millimeters (e.g., 2\text{ mm}$ for GT2 belts).
+- $P $: Belt pitch in millimeters (e.g., 2 mm for GT2 belts).
 - $T$: Pulley tooth count (e.g., 20 teeth).
 
 Evaluating the parameters for the standard GT2 belt drive yields:
@@ -69,7 +69,7 @@ $$
 V_{\text{ref}} = 8 \cdot I_{\max} \cdot R_s
 $$
 
-Where $I_{\max}$ is the target motor phase current, and $R_s$ is the sense resistor value (typically $0.1\ \Omega$).
+Where $I_{\max}$ is the target motor phase current, and $R_s$ is the sense resistor value (typically $R_s = 0.1\ \Omega$).
 
 
 ## Hardware Bill of Materials (BOM)
