@@ -42,20 +42,35 @@ flowchart TD
 ## Theoretical & Mathematical Models
 
 ### Kinematic Resolution (Steps per mm)
-To ensure dimensional accuracy, the firmware must accurately map stepper motor pulses to physical linear movement.
-For a belt-driven axis (X and Y), the steps per millimeter ($S$) is calculated as:
-$$ S = \frac{SPR \times MS}{P \times T} $$
+
+To ensure dimensional accuracy, the firmware must accurately map stepper motor pulses to physical linear movement. For a belt-driven axis (X and Y), the steps per millimeter ($S$) is calculated as:
+
+$$
+S = \frac{\text{SPR} \cdot \text{MS}}{P \cdot T}
+$$
+
 Where:
-- $SPR$ = Stepper steps per revolution (Typically 200 for a 1.8° motor).
-- $MS$ = Microstepping factor set via jumpers (e.g., 16 for A4988).
-- $P$ = Belt pitch in mm (e.g., 2mm for GT2 belts).
-- $T$ = Pulley tooth count (e.g., 20 teeth).
-$$ S = \frac{200 \times 16}{2 \times 20} = 80 \text{ steps/mm} $$
+- $\text{SPR}$: Stepper steps per revolution (typically 200 for a 1.8° step angle motor).
+- $\text{MS}$: Microstepping factor set via stepper driver jumpers (e.g., 16 for A4988 / 1/16 microstepping).
+- $P $: Belt pitch in millimeters (e.g., 2\text{ mm}$ for GT2 belts).
+- $T$: Pulley tooth count (e.g., 20 teeth).
+
+Evaluating the parameters for the standard GT2 belt drive yields:
+
+$$
+S = \frac{200 \times 16}{2 \times 20} = 80\ \text{steps/mm}
+$$
 
 ### Driver Current Tuning
-To prevent missed steps without exceeding motor thermal limits, the stepper driver reference voltage ($V_{ref}$) is tuned:
-$$ V_{ref} = 8 \times I_{max} \times R_s $$
-Where $I_{max}$is the target motor phase current and$R_s$is the sense resistor value (typically$0.1\Omega$).
+
+To prevent missed steps without exceeding motor thermal limits, the stepper driver reference voltage ($V_{\text{ref}}$) is tuned according to:
+
+$$
+V_{\text{ref}} = 8 \cdot I_{\max} \cdot R_s
+$$
+
+Where $I_{\max}$ is the target motor phase current, and $R_s$ is the sense resistor value (typically $0.1\ \Omega$).
+
 
 ## Hardware Bill of Materials (BOM)
 | Component | Specification | Quantity |
@@ -101,7 +116,7 @@ Where $I_{max}$is the target motor phase current and$R_s$is the sense resistor v
 6. Verify motor direction and calibrate E-steps utilizing a caliper and 100mm extrusion test.
 
 ## Authentic Documentation & Historical Asset Links
-- **Project Report**: [`docs/3D Printer Report 2.pdf`](docs/3D%20Printer%20Report%202.pdf) **[VERIFIED]**
+- **Project Report**: [`docs/Custom_CoreXY_3D_Printer_Construction_Report.pdf`](docs/Custom_CoreXY_3D_Printer_Construction_Report.pdf) **[VERIFIED]**
 - **Machine Captures**: [`docs/images/`](docs/images/) **[ORIGINAL]**
 
 ## Engineering Audit & Defensibility Limitations
